@@ -3,7 +3,9 @@ export default function RootLayout() {
   return (
     <>
       <header></header>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
