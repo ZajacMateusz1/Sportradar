@@ -2,6 +2,7 @@
   "data": [
     {
       "season": 2024,
+      "sport": "Football",
       "status": "played",
       "timeVenueUTC": "00:00:00",
       "dateVenue": "2026-03-01",
@@ -43,6 +44,7 @@
     },
     {
       "season": 2024,
+      "sport": "Football",
       "status": "scheduled",
       "timeVenueUTC": "16:00:00",
       "dateVenue": "2024-01-03",
@@ -86,6 +88,7 @@
     },
     {
       "season": 2024,
+      "sport": "Football",
       "status": "scheduled",
       "timeVenueUTC": "15:25:00",
       "dateVenue": "2024-01-04",
@@ -129,6 +132,7 @@
     },
     {
       "season": 2024,
+      "sport": "Football",
       "status": "scheduled",
       "timeVenueUTC": "08:00:00",
       "dateVenue": "2024-01-04",
@@ -172,6 +176,7 @@
     },
     {
       "season": 2024,
+      "sport": "Football",
       "status": "scheduled",
       "timeVenueUTC": "00:00:00",
       "dateVenue": "2024-01-19",

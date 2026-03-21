@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { type EventType } from "../utils/types";
+import { type TransformedEventType } from "../utils/types";
 interface EventsContextInterface {
-  events: EventType[];
-  handleAddEvent: (newEvent: EventType) => void;
+  events: TransformedEventType[];
+  handleAddEvent: (newEvent: TransformedEventType) => void;
 }
 const EventsContext = createContext<EventsContextInterface>({
   events: [],

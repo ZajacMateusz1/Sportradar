@@ -4,7 +4,7 @@ import EventsContextProvider from "./store/EventsContextProvider";
 function App() {
   return (
     <EventsContextProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </EventsContextProvider>
   );
 }

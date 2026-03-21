@@ -1,6 +1,6 @@
 import { useState, useMemo, useContext } from "react";
 import EventsContext from "../store/events-context";
-import type { EventType } from "../utils/types";
+import type { TransformedEventType } from "../utils/types";
 
 export default function CalendarPage() {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -44,12 +44,12 @@ export default function CalendarPage() {
     });
   };
   const eventsMap = useMemo(() => {
-    const dateToEvents: Record<string, EventType[]> = {};
+    const dateToEvents: Record<string, TransformedEventType[]> = {};
     events.forEach((event) => {
-      if (!dateToEvents[event.dateVenue]) {
-        dateToEvents[event.dateVenue] = [];
+      if (!dateToEvents[event.date]) {
+        dateToEvents[event.date] = [];
       }
-      dateToEvents[event.dateVenue].push(event);
+      dateToEvents[event.date].push(event);
     });
     return dateToEvents;
   }, [events]);
@@ -87,7 +87,7 @@ export default function CalendarPage() {
               <span key={date}>
                 {day}
                 {eventsMap[date]
-                  ? eventsMap[date].map((event) => event.homeTeam?.name)
+                  ? eventsMap[date].map((event) => event.homeTeamName)
                   : ""}
               </span>
             );
