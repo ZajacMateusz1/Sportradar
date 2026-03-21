@@ -17,11 +17,30 @@ export default function CalendarPage() {
     "November",
     "December",
   ];
-  const currentDate = new Date();
-  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
-  const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const today = new Date();
+  const [currentDate, setCurrentDate] = useState({
+    month: today.getMonth(),
+    year: today.getFullYear(),
+  });
+  const daysInMonth = new Date(
+    currentDate.year,
+    currentDate.month + 1,
+    0,
+  ).getDate();
+  const firstDay = new Date(currentDate.year, currentDate.month, 1).getDay();
+  const prevMonth = () => {
+    setCurrentDate((prevDate) => {
+      if (prevDate.month > 0) return { ...prevDate, month: prevDate.month - 1 };
+      else return { month: 11, year: prevDate.year - 1 };
+    });
+  };
+  const nextMonth = () => {
+    setCurrentDate((prevDate) => {
+      if (prevDate.month < 11)
+        return { ...prevDate, month: prevDate.month + 1 };
+      else return { month: 0, year: prevDate.year + 1 };
+    });
+  };
   const eventsMap = useMemo(() => {
     const dateToEvents: Record<string, typeof EVENTS.data> = {};
     EVENTS.data.forEach((event) => {
@@ -37,7 +56,15 @@ export default function CalendarPage() {
       <h1>Sports Events Calendar</h1>
       <div className="calendar">
         <div className="header">
-          <h2>{`${months[currentMonth]} ${currentYear}`}</h2>
+          <h2>{`${months[currentDate.month]} ${currentDate.year}`}</h2>
+          <div className="changeMonthButtons">
+            <button className="prevButton" onClick={prevMonth}>
+              Prev Month
+            </button>
+            <button className="nextButton" onClick={nextMonth}>
+              Next Month
+            </button>
+          </div>
         </div>
         <div className="weekdays">
           {days.map((day) => (
@@ -46,14 +73,16 @@ export default function CalendarPage() {
         </div>
         <div className="monthDays">
           {Array.from({ length: firstDay }).map((_, index) => (
-            <span key={`empty-${index}`}></span>
+            <span
+              key={`empty-${index}-${currentDate.month}-${currentDate.year}`}
+            ></span>
           ))}
           {Array.from({ length: daysInMonth }).map((_, index) => {
             const day = index + 1;
-            const month = currentMonth + 1;
-            const date = `${currentYear}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+            const month = currentDate.month + 1;
+            const date = `${currentDate.year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
             return (
-              <span key={day}>
+              <span key={date}>
                 {day}
                 {eventsMap[date]
                   ? eventsMap[date].map((event) => event.homeTeam?.name)
