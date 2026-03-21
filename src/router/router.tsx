@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../pages/RootLayout";
 import CalendarPage from "../pages/CalendarPage";
+import EventDetailsPage from "../pages/EventDetailsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -9,6 +10,15 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <CalendarPage />,
+      },
+      {
+        path: "events",
+        children: [
+          {
+            path: ":eventID",
+            element: <EventDetailsPage />,
+          },
+        ],
       },
     ],
   },
