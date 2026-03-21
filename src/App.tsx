@@ -1,7 +1,12 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router";
+import EventsContextProvider from "./store/EventsContextProvider";
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <EventsContextProvider>
+      <RouterProvider router={router} />;
+    </EventsContextProvider>
+  );
 }
 
 export default App;
