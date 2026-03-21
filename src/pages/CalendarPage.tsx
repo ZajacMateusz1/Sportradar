@@ -1,5 +1,6 @@
-import { useState, useMemo } from "react";
-import EVENTS from "../utils/events.json";
+import { useState, useMemo, useContext } from "react";
+import EventsContext from "../store/events-context";
+import type { EventType } from "../utils/types";
 
 export default function CalendarPage() {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -17,6 +18,7 @@ export default function CalendarPage() {
     "November",
     "December",
   ];
+  const { events } = useContext(EventsContext);
   const today = new Date();
   const [currentDate, setCurrentDate] = useState({
     month: today.getMonth(),
@@ -42,15 +44,15 @@ export default function CalendarPage() {
     });
   };
   const eventsMap = useMemo(() => {
-    const dateToEvents: Record<string, typeof EVENTS.data> = {};
-    EVENTS.data.forEach((event) => {
+    const dateToEvents: Record<string, EventType[]> = {};
+    events.forEach((event) => {
       if (!dateToEvents[event.dateVenue]) {
         dateToEvents[event.dateVenue] = [];
       }
       dateToEvents[event.dateVenue].push(event);
     });
     return dateToEvents;
-  }, []);
+  }, [events]);
   return (
     <>
       <h1>Sports Events Calendar</h1>
