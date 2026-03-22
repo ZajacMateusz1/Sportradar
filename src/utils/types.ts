@@ -5,12 +5,7 @@ export type TransformedEventType = {
   sport: string;
   date: string;
   time: string;
-  status: string;
   homeTeamName: string;
   awayTeamName: string;
-  result: {
-    homeGoals: number;
-    awayGoals: number;
-  };
   competitionName: string;
 };
