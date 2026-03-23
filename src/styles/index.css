@@ -2,7 +2,12 @@
 
 body {
   font-family: "Roboto", Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
 }
 @theme {
   --font-header: "Montserrat", Arial, sans-serif;
+  --color-main: #f59e0b;
+  --color-main-bg: #00283d;
+  --color-font-secondary: #fff;
 }
