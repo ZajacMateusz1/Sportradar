@@ -14,7 +14,7 @@ export default function SelectElement({
   ...props
 }: SelectElementProps) {
   return (
-    <div className="flex flex-col gap-0.5">
+    <div className="flex flex-col gap-0.5 w-1/2 text-xs md:text-md lg:text-lg xl:text-xl">
       <label className="text-center" htmlFor={name}>
         {label}
       </label>
@@ -22,7 +22,7 @@ export default function SelectElement({
         name={name}
         id={name}
         {...props}
-        className="border border-black rounded p-0.5"
+        className="p-0.5 border border-black rounded lg:p-1"
       >
         <option value="" hidden>
           Select option
@@ -33,7 +33,7 @@ export default function SelectElement({
           </option>
         ))}
       </select>
-      {error && <p>{error}</p>}
+      {error && <p className="text-error pt-1">{error}</p>}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import EventsContext from "../store/events-context";
 export default function EventDetailsPage() {
   const { events } = useContext(EventsContext);
   const params = useParams();
-  const findedEvent = events.find((event) => event.id === params.eventID);
+  const findedEvent = events.find((event) => event.id === params.eventId);
 
   return (
     <main>
