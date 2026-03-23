@@ -4,11 +4,13 @@ interface SelectElementProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   label: string;
   options: string[];
+  error: string;
 }
 export default function SelectElement({
   name,
   label,
   options,
+  error,
   ...props
 }: SelectElementProps) {
   return (
@@ -31,6 +33,7 @@ export default function SelectElement({
           </option>
         ))}
       </select>
+      {error && <p>{error}</p>}
     </div>
   );
 }

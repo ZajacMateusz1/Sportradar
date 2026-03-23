@@ -3,11 +3,13 @@ interface InputElementProps extends InputHTMLAttributes<HTMLInputElement> {
   children: string;
   name: string;
   type: string;
+  error: string;
 }
 export default function InputElement({
   children,
-  type,
   name,
+  type,
+  error,
   ...props
 }: InputElementProps) {
   return (
@@ -22,6 +24,7 @@ export default function InputElement({
         id={name}
         {...props}
       />
+      {error && <p>{error}</p>}
     </div>
   );
 }

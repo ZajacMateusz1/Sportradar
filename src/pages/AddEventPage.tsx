@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import EventsContext from "../store/events-context";
+import useFormField from "../hooks/useFormField";
+import { isEmpty } from "../utils/validation";
 import InputElement from "../components/shared/InputElement";
 import SelectElement from "../components/shared/SelectElement";
 import Button from "../components/shared/Button";
@@ -8,20 +10,24 @@ export default function AddEventPage() {
   const { handleAddEvent } = useContext(EventsContext);
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const values = Object.fromEntries(formData.entries()) as Record<
-      string,
-      string
-    >;
+    Object.values(formData).forEach((formField) => formField.handleBlur());
     handleAddEvent({
       id: uuidv4(),
-      sport: values.sport,
-      date: values.date,
-      time: values.time,
-      homeTeamName: values.homeTeamName,
-      awayTeamName: values.awayTeamName,
-      competitionName: values.competitionName,
+      sport: formData.sport.value,
+      date: formData.date.value,
+      time: formData.time.value,
+      homeTeamName: formData.homeTeamName.value,
+      awayTeamName: formData.awayTeamName.value,
+      competitionName: formData.competitionName.value,
     });
+  };
+  const formData = {
+    sport: useFormField(isEmpty),
+    date: useFormField(isEmpty),
+    time: useFormField(isEmpty),
+    homeTeamName: useFormField(isEmpty),
+    awayTeamName: useFormField(isEmpty),
+    competitionName: useFormField(isEmpty),
   };
   return (
     <div className="wrapper text-center">
@@ -30,19 +36,47 @@ export default function AddEventPage() {
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-2 max-w-md mx-auto p-6 bg-grey rounded-xl shadow"
       >
-        <InputElement name="date" type="date" required>
+        <InputElement
+          value={formData.date.value}
+          onChange={(e) => formData.date.handleInputChange(e.target.value)}
+          onBlur={formData.date.handleBlur}
+          error={formData.date.error ? "This field cannot be empty" : ""}
+          name="date"
+          type="date"
+          required
+        >
           Date
         </InputElement>
-        <InputElement name="time" type="time" required>
+        <InputElement
+          value={formData.time.value}
+          onChange={(e) => formData.time.handleInputChange(e.target.value)}
+          onBlur={formData.time.handleBlur}
+          error={formData.time.error ? "This field cannot be empty" : ""}
+          name="time"
+          type="time"
+          required
+        >
           Time
         </InputElement>
         <SelectElement
+          value={formData.sport.value}
+          onChange={(e) => formData.sport.handleInputChange(e.target.value)}
+          onBlur={formData.sport.handleBlur}
+          error={formData.sport.error ? "This field cannot be empty" : ""}
           name="sport"
           label="Please select sport"
           options={["Football", "Basketball", "Volleyball"]}
           required
         />
         <SelectElement
+          value={formData.competitionName.value}
+          onChange={(e) =>
+            formData.competitionName.handleInputChange(e.target.value)
+          }
+          onBlur={formData.competitionName.handleBlur}
+          error={
+            formData.competitionName.error ? "This field cannot be empty" : ""
+          }
           name="competitionName"
           label="Please select competition"
           options={[
@@ -53,11 +87,35 @@ export default function AddEventPage() {
           ]}
           required
         />
-        <InputElement name="homeTeamName" type="text" required>
+        <InputElement
+          value={formData.homeTeamName.value}
+          onChange={(e) =>
+            formData.homeTeamName.handleInputChange(e.target.value)
+          }
+          onBlur={formData.homeTeamName.handleBlur}
+          error={
+            formData.homeTeamName.error ? "This field cannot be empty" : ""
+          }
+          name="homeTeamName"
+          type="text"
+          required
+        >
           Home Team
         </InputElement>
 
-        <InputElement name="awayTeamName" type="text" required>
+        <InputElement
+          value={formData.awayTeamName.value}
+          onChange={(e) =>
+            formData.awayTeamName.handleInputChange(e.target.value)
+          }
+          onBlur={formData.awayTeamName.handleBlur}
+          error={
+            formData.awayTeamName.error ? "This field cannot be empty" : ""
+          }
+          name="awayTeamName"
+          type="text"
+          required
+        >
           Away Team
         </InputElement>
         <div className="buttons flex gap-2">
