@@ -1,12 +1,24 @@
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 interface CalendarHeaderProps {
-  months: string[];
   currentMonth: number;
   currentYear: number;
   handlePrevMonth: () => void;
   handleNextMonth: () => void;
 }
 export default function CalendarHeader({
-  months,
   currentMonth,
   currentYear,
   handlePrevMonth,

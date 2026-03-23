@@ -38,7 +38,7 @@ export default function CalendarGrid({
             {eventsMap[date]
               ? eventsMap[date].map((event) => (
                   <Link
-                    to={`events/${event.id}`}
+                    to={`/events/${event.id}`}
                     key={event.id}
                     className="text-xs truncate"
                   >{`${event.homeTeamName} vs ${event.awayTeamName}, ${event.time.slice(0, -3)}`}</Link>

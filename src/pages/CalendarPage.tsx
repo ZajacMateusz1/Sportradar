@@ -1,23 +1,9 @@
 import { useState, useMemo, useContext } from "react";
 import EventsContext from "../store/events-context";
 import type { TransformedEventType } from "../utils/types";
-import CalendarHeader from "../components/Calendar/CalendarHeader";
-import WeekdaysRow from "../components/Calendar/WeekdaysRow";
-import CalendarGrid from "../components/Calendar/CalendarGrid";
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import CalendarHeader from "../components/calendar/CalendarHeader";
+import WeekdaysRow from "../components/calendar/WeekdaysRow";
+import CalendarGrid from "../components/calendar/CalendarGrid";
 
 export default function CalendarPage() {
   const { events } = useContext(EventsContext);
@@ -52,7 +38,6 @@ export default function CalendarPage() {
   return (
     <div className="calendar h-screen flex flex-col p-2 text-center">
       <CalendarHeader
-        months={months}
         currentMonth={currentDate.month}
         currentYear={currentDate.year}
         handlePrevMonth={handlePrevMonth}
