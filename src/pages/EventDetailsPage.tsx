@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import EventsContext from "../store/events-context";
+import Button from "../components/shared/Button";
 export default function EventDetailsPage() {
   const { events } = useContext(EventsContext);
   const params = useParams();
@@ -19,7 +20,7 @@ export default function EventDetailsPage() {
             {selectedEvent.competitionName}
           </p>
         </header>
-        <section className="event-info">
+        <section className="event-info pb-2">
           <h3 className="font-semibold text-md md:text-lg lg:text-xl xl:text-2xl">
             Details
           </h3>
@@ -30,6 +31,9 @@ export default function EventDetailsPage() {
             Time: {selectedEvent.date}, {selectedEvent.time.slice(0, 5)}
           </p>
         </section>
+        <Button>
+          <Link to="/">Back to calendar</Link>
+        </Button>
       </div>
     </main>
   );
