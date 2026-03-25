@@ -13,6 +13,10 @@ export default function AddEventPage() {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     Object.values(formData).forEach((formField) => formField.handleBlur());
+    const hasError = Object.values(formData).some(
+      (formField) => formField.error,
+    );
+    if (hasError) return;
     handleAddEvent({
       id: uuidv4(),
       sport: formData.sport.value,
