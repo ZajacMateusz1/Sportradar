@@ -7,7 +7,19 @@ export default function EventDetailsPage() {
   const params = useParams();
   const selectedEvent = events.find((event) => event.id === params.eventId);
   if (!selectedEvent) {
-    return <h2>Event not found</h2>;
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <h2 className="text-md font-bold md:text-xl lg:text-2xl xl:text-3xl">
+          Event not found
+        </h2>
+        <LinkButton
+          className="p-1.5 rounded-lg cursor-pointer text-sm bg-main-bg text-font-secondary md:max-w-md md:text-md lg:text-lg xl:text-xl md:p-2 hover:text-main transition"
+          to="/"
+        >
+          Back to calendar
+        </LinkButton>
+      </div>
+    );
   }
   return (
     <div className="flex justify-center">
