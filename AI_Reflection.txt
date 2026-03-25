@@ -1,0 +1,11 @@
+How I used AI:
+To get suggestions for component organization
+To do review of my code and identify potential improvements
+
+What I did myself:
+Implemented all core features (calendar, routing, forms, state management)
+Designed the application structure and data flow
+Wrote the majority of the code manually
+
+AI was used as a support tool during development.
+All final decisions and implementations were made by me.
