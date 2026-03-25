@@ -13,7 +13,7 @@ export default function DayCard({ events, day }: DayCardProps) {
           <Link
             to={`/events/${event.id}`}
             key={event.id}
-            className="block truncate text-xs p-0.5"
+            className="block truncate text-xs p-0.5 lg:text-md"
           >{`${event.homeTeamName} vs ${event.awayTeamName}`}</Link>
         ))}
     </div>

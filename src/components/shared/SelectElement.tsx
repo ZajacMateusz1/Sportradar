@@ -3,13 +3,17 @@ import type { SelectHTMLAttributes } from "react";
 interface SelectElementProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   label: string;
+  defaultMessage?: string;
+  isHidden?: boolean;
   options: string[];
-  error: string;
+  error?: string;
 }
 export default function SelectElement({
   name,
   label,
   options,
+  defaultMessage = "Select option",
+  isHidden = true,
   error,
   ...props
 }: SelectElementProps) {
@@ -22,10 +26,10 @@ export default function SelectElement({
         name={name}
         id={name}
         {...props}
-        className="p-0.5 border border-black rounded lg:p-1"
+        className="p-0.5 border border-black rounded lg:p-1 bg-white shadow"
       >
-        <option value="" hidden>
-          Select option
+        <option value="" hidden={isHidden}>
+          {defaultMessage}
         </option>
         {options.map((option) => (
           <option value={option} key={option}>

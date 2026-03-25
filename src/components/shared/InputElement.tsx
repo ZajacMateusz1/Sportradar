@@ -3,7 +3,7 @@ interface InputElementProps extends InputHTMLAttributes<HTMLInputElement> {
   children: string;
   name: string;
   type: string;
-  error: string;
+  error?: string;
 }
 export default function InputElement({
   children,

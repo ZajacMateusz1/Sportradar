@@ -25,16 +25,28 @@ export default function CalendarPage() {
       else return { ...prevDate, month: 0, year: prevDate.year + 1 };
     });
   };
+  const [filters, setFilters] = useState({
+    sport: "",
+  });
+  const handleFiltersChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const filteredEvents = events.filter(
+    (event) => filters.sport === "" || event.sport === filters.sport,
+  );
   const eventsMap = useMemo(() => {
     const dateToEvents: Record<string, TransformedEventType[]> = {};
-    events.forEach((event) => {
+    filteredEvents.forEach((event) => {
       if (!dateToEvents[event.date]) {
         dateToEvents[event.date] = [];
       }
       dateToEvents[event.date].push(event);
     });
     return dateToEvents;
-  }, [events]);
+  }, [filteredEvents]);
   return (
     <section className="calendar h-screen flex flex-col p-2 text-center">
       <CalendarHeader
@@ -42,6 +54,8 @@ export default function CalendarPage() {
         currentYear={currentDate.year}
         handlePrevMonth={handlePrevMonth}
         handleNextMonth={handleNextMonth}
+        filters={filters}
+        handleFiltersChange={handleFiltersChange}
       />
       <WeekdaysRow />
       <CalendarGrid currentDate={currentDate} eventsMap={eventsMap} />
