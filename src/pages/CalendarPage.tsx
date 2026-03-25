@@ -15,14 +15,14 @@ export default function CalendarPage() {
   const handlePrevMonth = () => {
     setCurrentDate((prevDate) => {
       if (prevDate.month > 0) return { ...prevDate, month: prevDate.month - 1 };
-      else return { month: 11, year: prevDate.year - 1 };
+      else return { ...prevDate, month: 11, year: prevDate.year - 1 };
     });
   };
   const handleNextMonth = () => {
     setCurrentDate((prevDate) => {
       if (prevDate.month < 11)
         return { ...prevDate, month: prevDate.month + 1 };
-      else return { month: 0, year: prevDate.year + 1 };
+      else return { ...prevDate, month: 0, year: prevDate.year + 1 };
     });
   };
   const eventsMap = useMemo(() => {
@@ -36,7 +36,7 @@ export default function CalendarPage() {
     return dateToEvents;
   }, [events]);
   return (
-    <div className="calendar h-screen flex flex-col p-2 text-center">
+    <section className="calendar h-screen flex flex-col p-2 text-center">
       <CalendarHeader
         currentMonth={currentDate.month}
         currentYear={currentDate.year}
@@ -45,6 +45,6 @@ export default function CalendarPage() {
       />
       <WeekdaysRow />
       <CalendarGrid currentDate={currentDate} eventsMap={eventsMap} />
-    </div>
+    </section>
   );
 }
