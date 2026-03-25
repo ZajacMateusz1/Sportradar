@@ -3,10 +3,12 @@ import RootLayout from "../pages/RootLayout";
 import CalendarPage from "../pages/CalendarPage";
 import EventDetailsPage from "../pages/EventDetailsPage";
 import AddEventPage from "../pages/AddEventPage";
+import ErrorPage from "../pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
